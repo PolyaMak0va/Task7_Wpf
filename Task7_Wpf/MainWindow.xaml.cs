@@ -70,10 +70,10 @@ namespace Task7._1_Wpf
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog() { Filter = "PDF file (*.pdf)|*.pdf|Все файлы (*.*)|*.*" };
 
-            //if (saveFileDialog.ShowDialog() == true)
-            //{
-            //    File.WriteAllText(saveFileDialog.FileName, textBox.Text);
-            //}
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, textBox.Text);
+            }
         }
 
         private void PrintExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -168,7 +168,7 @@ namespace Task7._1_Wpf
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string fontName = ((sender as ComboBox).SelectedItem as TextBlock).Text;
+            string fontName = (sender as ComboBox).SelectedItem as string;
 
             if (textBox != null)
             {
@@ -178,7 +178,7 @@ namespace Task7._1_Wpf
 
         private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            string fontSize = ((sender as ComboBox).SelectedItem as TextBlock).Text;
+            string fontSize = (sender as ComboBox).SelectedItem as string;
 
             if (int.TryParse(fontSize, out int newValue))
             {
