@@ -43,6 +43,25 @@ namespace Task7._1_Wpf
             BtnBold.CommandBindings.Add(commandBtnBold);
             BtnItalic.CommandBindings.Add(commandBtnItalic);
             BtnUnderline.CommandBindings.Add(commandBtnUnderline);
+
+            List<string> styles = new List<string>() { "Светлая тема", "Тёмная тема" };
+            styleBox.ItemsSource = styles;
+            styleBox.SelectionChanged += ThemeChange;
+            styleBox.SelectedIndex = 0;
+        }
+
+        private void ThemeChange(object sender, SelectionChangedEventArgs e)
+        {
+            int styleIndex = styleBox.SelectedIndex;
+            Uri uri = new Uri("LightTheme.xaml", UriKind.Relative);
+            if (styleIndex == 1)
+            {
+                uri = new Uri("DarkTheme.xaml", UriKind.Relative);
+            }
+
+            ResourceDictionary resource = Application.LoadComponent(uri) as ResourceDictionary;
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(resource);
         }
 
         private void OpenExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -127,7 +146,7 @@ namespace Task7._1_Wpf
 
         private void PrintPreviewExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-           
+
         }
 
         private void CommandBinding_Executed1(object sender, ExecutedRoutedEventArgs e)
@@ -195,7 +214,14 @@ namespace Task7._1_Wpf
             {
                 if (textBox != null)
                 {
-                    textBox.Foreground = Brushes.Black;
+                    if (styleBox.SelectedIndex == 0)
+                    {
+                        textBox.Foreground = Brushes.Black;
+                    }
+                    else
+                    {
+                        textBox.Foreground = Brushes.White;
+                    }
                 }
             }
             else if (Rb2.IsChecked == true)

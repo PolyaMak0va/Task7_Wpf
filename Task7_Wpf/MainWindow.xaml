@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task7._1_Wpf"
         mc:Ignorable="d"
-        Title="Текстовый редактор" Height="450" Width="800">
+        Title="Текстовый редактор" Height="450" Width="800" Style="{DynamicResource WindowStyle}">
+
     <Window.CommandBindings>
         <CommandBinding Command="Open" Executed="OpenExecuted"/>
         <CommandBinding Command="Save" Executed="SaveExecuted"/>
@@ -14,121 +15,152 @@
         <CommandBinding Command="PrintPreview" Executed="PrintPreviewExecuted"/>
         <CommandBinding Command="local:MyCommands.Exit" Executed="ExitExecuted"/>
     </Window.CommandBindings>
-    <!--<Window.Resources>
-        <col:ArrayList x:Key="fontFamily">
-            <sys:String>Arial</sys:String>
-            <sys:String>Times New Roman</sys:String>
-            <sys:String>Comic Sans MS</sys:String>
-        </col:ArrayList>
-    </Window.Resources>-->
+
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu Margin="5" Padding="5" Background="#FFB4E0AB" >
-            <MenuItem Header="_Файл">
-                <MenuItem Header="_Открыть">
-                    <MenuItem Header="_Открыть файл" Command="Open">
+
+        <Menu Margin="5" Padding="5" Style="{DynamicResource MenuStyle}">
+
+            <MenuItem Header="_Файл" Style="{DynamicResource MenuItemStyle}">
+
+                <MenuItem Header="_Открыть" Style="{DynamicResource MenuItemStyle}">
+                    <MenuItem Header="_Открыть файл" Command="Open"  Style="{DynamicResource MenuItemStyle}">
                         <MenuItem.Icon>
                             <Image Source="Data/open_file_image.png" RenderOptions.BitmapScalingMode="Fant" HorizontalAlignment="Center"/>
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="_Сохранить" Command="Save">
+
+                <MenuItem Header="_Сохранить" Command="Save" Style="{DynamicResource MenuItemStyle}">
                     <MenuItem.Icon>
                         <Image Source="Data/save_image.png" RenderOptions.BitmapScalingMode="Fant" HorizontalAlignment="Center"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Command="local:MyCommands.SaveAs">
-                </MenuItem>
-                <Separator/>
-                <MenuItem Header="_Печать" Command="Print">
+
+                <MenuItem Command="local:MyCommands.SaveAs" Style="{DynamicResource MenuItemStyle}"/>
+
+                <Separator Style="{DynamicResource SeparatorStyleKey}"/>
+
+                <MenuItem Header="_Печать" Command="Print" Style="{DynamicResource MenuItemStyle}">
                     <MenuItem.Icon>
                         <Image Source="Data/print_image.png" RenderOptions.BitmapScalingMode="Fant" HorizontalAlignment="Center"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Предварительный просмотр страницы" Command="PrintPreview" CommandTarget="{Binding ElementName=textBox}"/>
-                <Separator/>
-                <MenuItem Command="local:MyCommands.Exit"/>
+
+                <MenuItem Header="_Предварительный просмотр страницы" Command="PrintPreview" CommandTarget="{Binding ElementName=textBox}" Style="{DynamicResource MenuItemStyle}"/>
+
+                <Separator Style="{DynamicResource SeparatorStyleKey}"/>
+
+                <MenuItem Command="local:MyCommands.Exit" Style="{DynamicResource MenuItemStyle}"/>
+
             </MenuItem>
-            <MenuItem Header="_Правка">
-                <MenuItem Header="_Отменить" Command="Undo" CommandTarget="{Binding ElementName=textBox}"/>
-                <Separator/>
-                <MenuItem Header="_Вырезать" Command="Cut" CommandTarget="{Binding ElementName=textBox}"/>
-                <MenuItem Header="_Копировать" Command="Copy" CommandTarget="{Binding ElementName=textBox}"/>
-                <MenuItem Header="_Вставить" Command="Paste" CommandTarget="{Binding ElementName=textBox}"/>
-                <MenuItem Header="_Удалить" Command="Delete" CommandTarget="{Binding ElementName=textBox}"/>
-                <Separator/>
-                <MenuItem Header="_Найти" Command="Find" CommandTarget="{Binding ElementName=textBox}"/>
+
+            <MenuItem Header="_Правка" Style="{DynamicResource MenuItemStyle}">
+
+                <MenuItem Header="_Отменить" Command="Undo" CommandTarget="{Binding ElementName=textBox}" Style="{DynamicResource MenuItemStyle}"/>
+
+                <Separator Style="{DynamicResource SeparatorStyleKey}"/>
+
+                <MenuItem Header="_Вырезать" Command="Cut" CommandTarget="{Binding ElementName=textBox}" Style="{DynamicResource MenuItemStyle}"/>
+
+                <MenuItem Header="_Копировать" Command="Copy" CommandTarget="{Binding ElementName=textBox}" Style="{DynamicResource MenuItemStyle}"/>
+
+                <MenuItem Header="_Вставить" Command="Paste" CommandTarget="{Binding ElementName=textBox}" Style="{DynamicResource MenuItemStyle}"/>
+
+                <MenuItem Header="_Удалить" Command="Delete" CommandTarget="{Binding ElementName=textBox}" Style="{DynamicResource MenuItemStyle}"/>
+
+                <Separator Style="{DynamicResource SeparatorStyleKey}"/>
+
+                <MenuItem Header="_Найти" Command="Find" CommandTarget="{Binding ElementName=textBox}" Style="{DynamicResource MenuItemStyle}"/>
+
             </MenuItem>
-            <MenuItem Header="_Справка">
-                <MenuItem Header="_Просмотр справки">
+
+            <MenuItem Header="_Справка" Style="{DynamicResource MenuItemStyle}">
+
+                <MenuItem Header="_Просмотр справки" Style="{DynamicResource MenuItemStyle}">
                     <MenuItem.Icon>
                         <Image Source="Data/question_image.png" RenderOptions.BitmapScalingMode="Fant" HorizontalAlignment="Center"/>
                     </MenuItem.Icon>
-                </MenuItem>
-            </MenuItem>
-        </Menu>
-        <ToolBarTray Grid.Row="1" Margin="5" Background="#FFB4E0AB" >
-            <ToolBar Margin="5" Padding="5" Background="#FFBDD7D7">
-                <ComboBox Margin="5" 
-                          Padding="5" 
-                          SelectedIndex="0" 
-                          Width="200" 
-                          SelectionChanged="ComboBox_SelectionChanged" 
-                          ItemsSource="{StaticResource fontFamily}"/>
 
-                <ComboBox Margin="5" 
-                          Padding="5" 
-                          SelectedIndex="2" 
+                </MenuItem>
+
+            </MenuItem>
+
+        </Menu>
+
+        <ToolBarTray Grid.Row="1" Margin="5" Style="{DynamicResource ToolBarTrayStyle}">
+
+            <ToolBar Style="{DynamicResource ToolBarStyle}">
+
+                <ComboBox SelectedIndex="0" 
+                          Width="150" 
+                          SelectionChanged="ComboBox_SelectionChanged"                           
+                          ItemsSource="{StaticResource fontFamily}"
+                          Style="{DynamicResource ComboBoxStyle}"/>
+
+                <ComboBox SelectedIndex="2" 
                           Width="50"
                           SelectionChanged="ComboBox_SelectionChanged_1" 
-                          ItemsSource="{StaticResource fontSize}"/>
+                          ItemsSource="{StaticResource fontSize}"
+                          Style="{DynamicResource ComboBoxStyle}"/>
 
             </ToolBar>
-            <ToolBar Margin="5" Padding="5" Background="#FFBDD7D7">
-                <Button Name="BtnBold" Command="ToggleBold">
-                    <Image Source="Data\format_text_bold.png" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Width="30" Height="30" HorizontalAlignment="Center"/>
+
+            <ToolBar Style="{DynamicResource ToolBarStyle}">
+
+                <Button x:Name="BtnBold" Command="ToggleBold" ToolTip="Полужирный" Cursor="Hand">
                     <Button.CommandBindings>
                         <CommandBinding Command="ToggleBold" Executed="CommandBinding_Executed1"/>
                     </Button.CommandBindings>
+                    <Image RenderOptions.BitmapScalingMode="Fant" Style="{DynamicResource ImageBoldStyle}"/>
                 </Button>
-                <Separator/>
-                <Button Name="BtnItalic" Command="ToggleItalic">
-                    <Image Source="Data\format_text_italic.png" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Width="30" Height="30" HorizontalAlignment="Center"/>
+
+                <Separator Style="{DynamicResource SeparatorStyleKey}"/>
+
+                <Button x:Name="BtnItalic" Command="ToggleItalic" ToolTip="Курсив" Cursor="Hand">
                     <Button.CommandBindings>
                         <CommandBinding Command="ToggleItalic" Executed="CommandBinding_Executed2"/>
                     </Button.CommandBindings>
+                    <Image RenderOptions.BitmapScalingMode="Fant" Style="{DynamicResource ImageItalicStyle}"/>
                 </Button>
-                <Separator/>
-                <Button Name="BtnUnderline" Command="ToggleUnderline">
-                    <Image Source="Data\format_text_underline.png" RenderOptions.BitmapScalingMode="Fant" Stretch="Fill" Width="30" Height="30" HorizontalAlignment="Center"/>
+
+                <Separator Style="{DynamicResource SeparatorStyleKey}"/>
+
+                <Button x:Name="BtnUnderline" Command="ToggleUnderline" ToolTip="Подчёркнутый" Cursor="Hand">
                     <Button.CommandBindings>
                         <CommandBinding Command="ToggleUnderline" Executed="CommandBinding_Executed3"/>
                     </Button.CommandBindings>
+                    <Image RenderOptions.BitmapScalingMode="Fant" Style="{DynamicResource ImageUnderlineStyle}"/>
                 </Button>
-                <Separator/>
+
             </ToolBar>
-            <ToolBar Margin="5" Padding="5" Background="#FFBDD7D7">
+
+            <ToolBar Style="{DynamicResource ToolBarStyle}">
                 <StackPanel VerticalAlignment="Center">
-                    <RadioButton Name="Rb1" Content="Чёрный" IsChecked="True" Checked="Rb1_Checked" />
-                    <RadioButton Name="Rb2" Content="Красный" Checked="Rb1_Checked"/>
+                    <RadioButton x:Name="Rb1" Content="Авто" IsChecked="True" VerticalContentAlignment="Center" Checked="Rb1_Checked" Style="{DynamicResource RadioButtonStyle}"/>
+                    <RadioButton x:Name="Rb2" Content="Красный" VerticalContentAlignment="Center" Checked="Rb1_Checked" Style="{DynamicResource RadioButtonStyle}"/>
                 </StackPanel>
             </ToolBar>
+
+            <ToolBar Style="{DynamicResource ToolBarStyle}">
+                <ComboBox x:Name="styleBox" 
+                          Width="100" 
+                          ToolTip="Выбор темы" 
+                          Cursor="Hand" 
+                          Style="{DynamicResource ComboBoxStyle}"/>
+            </ToolBar>
+
         </ToolBarTray>
+
         <TextBox x:Name="textBox" 
-                 Margin="5" 
-                 Padding="5" 
-                 FontSize="16" 
-                 FontFamily="Arial" 
-                 TextWrapping="Wrap" 
-                 BorderBrush="#FFBDD7D7" 
-                 Background="#FFF6F3D8" 
                  Grid.Row="2"
-                 VerticalScrollBarVisibility="Auto"
                  SpellCheck.IsEnabled="True"
-                 Language="ru-ru"/>
+                 Style="{DynamicResource TextBoxStyle}"/>
+
     </Grid>
 </Window>
