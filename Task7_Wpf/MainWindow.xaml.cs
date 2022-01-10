@@ -59,7 +59,7 @@ namespace Task7._1_Wpf
                 uri = new Uri("DarkTheme.xaml", UriKind.Relative);
             }
 
-            ResourceDictionary resource = Application.LoadComponent(uri) as ResourceDictionary;
+           ResourceDictionary resource = Application.LoadComponent(uri) as ResourceDictionary;
             Application.Current.Resources.Clear();
             Application.Current.Resources.MergedDictionaries.Add(resource);
         }
@@ -185,28 +185,28 @@ namespace Task7._1_Wpf
             }
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string fontName = (sender as ComboBox).SelectedItem as string;
+        //private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    string fontName = (sender as ComboBox).SelectedItem as string;
 
-            if (textBox != null)
-            {
-                textBox.FontFamily = new FontFamily(fontName);
-            }
-        }
+        //    if (textBox != null)
+        //    {
+        //        textBox.FontFamily = new FontFamily(fontName);
+        //    }
+        //}
 
-        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-            string fontSize = (sender as ComboBox).SelectedItem as string;
+        //private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        //{
+        //    string fontSize = (sender as ComboBox).SelectedItem as string;
 
-            if (int.TryParse(fontSize, out int newValue))
-            {
-                if (textBox != null)
-                {
-                    textBox.FontSize = newValue;
-                }
-            }
-        }
+        //    if (int.TryParse(fontSize, out int newValue))
+        //    {
+        //        if (textBox != null)
+        //        {
+        //            textBox.FontSize = newValue;
+        //        }
+        //    }
+        //}
 
         private void Rb1_Checked(object sender, RoutedEventArgs e)
         {

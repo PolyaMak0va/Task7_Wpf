@@ -1,9 +1,10 @@
-﻿<Window x:Class="Task7._1_Wpf.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task7._1_Wpf"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="Task7._1_Wpf.MainWindow"
         mc:Ignorable="d"
         Title="Текстовый редактор" Height="450" Width="800" Style="{DynamicResource WindowStyle}">
 
@@ -97,15 +98,17 @@
 
             <ToolBar Style="{DynamicResource ToolBarStyle}">
 
-                <ComboBox SelectedIndex="0" 
+                <ComboBox x:Name="comboBoxFontFamily" 
+                          SelectedIndex="0" 
                           Width="150" 
-                          SelectionChanged="ComboBox_SelectionChanged"                           
+                                                     
                           ItemsSource="{StaticResource fontFamily}"
                           Style="{DynamicResource ComboBoxStyle}"/>
 
-                <ComboBox SelectedIndex="2" 
+                <ComboBox x:Name="comboBoxFontSize" 
+                          SelectedIndex="2" 
                           Width="50"
-                          SelectionChanged="ComboBox_SelectionChanged_1" 
+                           
                           ItemsSource="{StaticResource fontSize}"
                           Style="{DynamicResource ComboBoxStyle}"/>
 
@@ -160,6 +163,8 @@
         <TextBox x:Name="textBox" 
                  Grid.Row="2"
                  SpellCheck.IsEnabled="True"
+                 FontFamily="{Binding SelectedItem, ElementName=comboBoxFontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 FontSize="{Binding SelectedItem, ElementName=comboBoxFontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Style="{DynamicResource TextBoxStyle}"/>
 
     </Grid>
